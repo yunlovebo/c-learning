@@ -2,10 +2,10 @@
 
 /**
  * @brief 归并排序
- * 时间复杂度：最好O()，最差O()，平均O()
- * 空间复杂度：O()
- * 稳定性：
- * @param num 
+ * 时间复杂度：最好O(nlogn)，最差O(nlogn)，平均O(nlogn)，第一个n是n个元素，logn是递归层数
+ * 空间复杂度：是o(n)，递归层深logn，额外空间用于在合并过程中临时存储数据n，抓大放小所以是o(n)
+ * 稳定性：稳定
+ * @param num
  * @param n
  */
 void merge_sort(int *num, int l, int r, int *temp) {
