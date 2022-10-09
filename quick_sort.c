@@ -27,7 +27,7 @@ void quick_sort(int *num, int left, int right) {
         while(l < r && num[l] <= t) {
             l++;
         }
-        if (l < r) { // 从左往左找一个比t大的，交换后，左边留下一个坑
+        if (l < r) { // 从左往右找一个比t大的，交换后，左边留下一个坑
             num[r] = num[l];
         }
     }
