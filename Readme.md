@@ -57,3 +57,51 @@ while(true) {
 
   use... // 非同步
 }
+
+
+
+
+// 读-写
+var rw=1 // 对互斥区的访问锁
+var count = 0 // reader count
+var count_mutex = 1; // 互斥访问count变量
+var w = 1; // 解决写饥饿
+// PV(w) 实现公平的先来先服务，不会让写进程饿死，也叫写优先，或叫读写公平法
+
+writer() {
+  while(1) {
+    P(w)
+
+    P(rw) // 写之前加锁
+    write...
+    V(rw) // 写之后解锁
+
+    V(w)
+  }
+}
+
+reader() {
+  while(1) {
+    P(w)
+
+    P(count_mutex)
+    if (count == 0) {
+      P(rw)
+    }
+    count++
+    V(count_mutex)
+
+    V(w)
+
+    read...
+
+    P(count_mutex)
+    count--
+    if (count == 0) {
+      V(rw)
+    }
+    V(count_mutex)
+
+  }
+}
+
