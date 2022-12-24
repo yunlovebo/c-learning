@@ -34,7 +34,7 @@ productor codes:
 while(true) {
   product codes... // 非同步
 
-  V(empty)
+  P(empty)
   // ******* 临界区互斥访问 begin ********/
   P(mutex)
   buffer_in...
